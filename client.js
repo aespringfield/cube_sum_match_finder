@@ -2,7 +2,8 @@ function comboFinder(x) {
   let cubeList = makeCubeList(x);
   cubeList.sort(comboSort);
   let matches = findMatches(cubeList);
-  return matches;
+  let formattedMatches = formatMatches(matches);
+  return formattedMatches;
 }
 
 function makeCubeList(a, comboArray = []) {
@@ -44,6 +45,21 @@ function findMatches(cubeList) {
     }
   }
   return matches;
+}
+
+function formatMatches(matches) {
+  let formattedMatches = [];
+  for (let i = 0; i < matches.length; i++) {
+    let currentMatch = matches[i];
+    let formattedMatch = {
+      a: currentMatch[0].a,
+      b: currentMatch[0].b,
+      c: currentMatch[1].a,
+      d: currentMatch[1].b
+    };
+    formattedMatches.push(formattedMatch);
+  }
+  return formattedMatches;
 }
 
 console.log(comboFinder(1000));
